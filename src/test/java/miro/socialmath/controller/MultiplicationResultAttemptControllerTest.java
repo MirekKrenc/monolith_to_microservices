@@ -34,7 +34,7 @@ public class MultiplicationResultAttemptControllerTest {
     private MultiplicationService multiplicationService;
 
     private JacksonTester<MultiplicationResultAttempt> jacksonTesterResult;
-    private JacksonTester<MultiplicationResultAttemptController.ResultResponse> jacksonTesterResponse;
+    private JacksonTester<MultiplicationResultAttempt> jacksonTesterResponse;
 
     @Before
     public void setup() {
@@ -60,7 +60,7 @@ public class MultiplicationResultAttemptControllerTest {
         User user = new User("Kowalsky");
 //        Multiplication multiplication = multiplicationService.createRandomMultiplication(); <- works ok
         Multiplication multiplication = new Multiplication(50, 70);
-        MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3500);
+        MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3500, false);
 
         //when
         MockHttpServletResponse response = mockMvc.perform(post("/results")
@@ -70,7 +70,13 @@ public class MultiplicationResultAttemptControllerTest {
 
         //then
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-        assertThat(response.getContentAsString()).isEqualTo(jacksonTesterResponse.write(new MultiplicationResultAttemptController.ResultResponse(isCorrect)).getJson());
+        assertThat(response.getContentAsString()).isEqualTo(jacksonTesterResponse
+                .write(new MultiplicationResultAttempt(
+                        attempt.getUser(),
+                        attempt.getMultiplication(),
+                        attempt.getResultAttempt(),
+                        isCorrect
+                )).getJson());
 
     }
 
@@ -82,7 +88,7 @@ public class MultiplicationResultAttemptControllerTest {
         User user = new User("john");
         Multiplication multiplication = new Multiplication(50, 70);
         MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(
-                user, multiplication, 3500);
+                user, multiplication, 3500, false);
 
         // when
         MockHttpServletResponse response = mockMvc.perform(
@@ -93,7 +99,14 @@ public class MultiplicationResultAttemptControllerTest {
         // then
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.getContentAsString()).isEqualTo(
-                jacksonTesterResponse.write(new MultiplicationResultAttemptController.ResultResponse(correct)).getJson());
+                jacksonTesterResponse.write(
+                        new MultiplicationResultAttempt(
+                                attempt.getUser(),
+                                attempt.getMultiplication(),
+                                attempt.getResultAttempt(),
+                                correct
+                        )
+                ).getJson());
     }
 
 

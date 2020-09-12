@@ -9,10 +9,19 @@ public class MultiplicationResultAttempt {
     private final Multiplication multiplication;
     private final int resultAttempt;
 
-    public MultiplicationResultAttempt(User user, Multiplication multiplication, int resultAttempt) {
+
+    private final boolean correct;
+
+    public MultiplicationResultAttempt(User user, Multiplication multiplication, int resultAttempt, boolean attempt) {
         this.user = user;
         this.multiplication = multiplication;
         this.resultAttempt = resultAttempt;
+        this.correct = attempt;
+    }
+
+    //no arg constructor for son purpose
+    public MultiplicationResultAttempt() {
+        this(null, null, -1, false);
     }
 
     public User getUser() {
@@ -27,12 +36,18 @@ public class MultiplicationResultAttempt {
         return resultAttempt;
     }
 
+
+    public boolean isCorrect() {
+        return correct;
+    }
+
     @Override
     public String toString() {
         return "MultiplicationResultAttempt{" +
                 "user=" + user +
                 ", multiplication=" + multiplication +
                 ", resultAttempt=" + resultAttempt +
+                ", correct=" + correct +
                 '}';
     }
 }
