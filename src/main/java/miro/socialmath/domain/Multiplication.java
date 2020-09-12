@@ -4,7 +4,7 @@ package miro.socialmath.domain;
  * The class represents mulitplication of to int numbers
  * from ange 11 to 100 so teh result is int also
  */
-public class Multiplication {
+public final class Multiplication {
 
     private int factorA;
     private int factorB;

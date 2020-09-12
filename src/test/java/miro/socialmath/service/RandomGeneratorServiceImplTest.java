@@ -31,7 +31,7 @@ public class RandomGeneratorServiceImplTest {
                 .collect(Collectors.toList());
 
         //then all of them will be between range
-        assertEquals(true, randomGeneratedNumbersAreInRange(randomFactors, RandomGeneratorService.MIN_RANGE, RandomGeneratorService.MAX_RANGE));
+        assertEquals(true, randomGeneratedNumbersAreInRange(randomFactors, RandomGeneratorServiceImpl.MIN_RANGE, RandomGeneratorServiceImpl.MAX_RANGE));
 
     }
 

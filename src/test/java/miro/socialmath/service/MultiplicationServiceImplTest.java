@@ -1,6 +1,8 @@
 package miro.socialmath.service;
 
 import miro.socialmath.domain.Multiplication;
+import miro.socialmath.domain.MultiplicationResultAttempt;
+import miro.socialmath.domain.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -37,5 +39,33 @@ public class MultiplicationServiceImplTest {
         assertThat(multiplication.getFactorA()).isEqualTo(50);
         assertThat(multiplication.getFactorB()).isEqualTo(30);
         assertThat(multiplication.getResult()).isEqualTo(1500);
+    }
+
+    @Test
+    public void checkCorrectAttemptTest() {
+        //given
+        Multiplication multiplication = new Multiplication(40, 50);
+        User user = new User("NowakJ");
+        MultiplicationResultAttempt multiplicationResultAttempt = new MultiplicationResultAttempt(user, multiplication, 2000);
+
+        //when
+        boolean attemptResult = multiplicationServiceImpl.checkAttempt(multiplicationResultAttempt);
+
+        //then
+        assertThat(attemptResult).isTrue();
+    }
+
+    @Test
+    public void checkIncorrectAttemptTest() {
+        //given
+        Multiplication multiplication = new Multiplication(40, 50);
+        User user = new User("NowakJ");
+        MultiplicationResultAttempt multiplicationResultAttempt = new MultiplicationResultAttempt(user, multiplication, 1000);
+
+        //when
+        boolean attemptResult = multiplicationServiceImpl.checkAttempt(multiplicationResultAttempt);
+
+        //then
+        assertThat(attemptResult).isFalse();
     }
 }

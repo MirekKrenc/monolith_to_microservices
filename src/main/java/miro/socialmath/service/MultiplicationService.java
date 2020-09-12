@@ -1,6 +1,7 @@
 package miro.socialmath.service;
 
 import miro.socialmath.domain.Multiplication;
+import miro.socialmath.domain.MultiplicationResultAttempt;
 
 public interface MultiplicationService {
     /**
@@ -9,4 +10,10 @@ public interface MultiplicationService {
      * between 11 and 100
      */
     Multiplication createRandomMultiplication();
+
+    /**
+     * @return true if attemt matches the correct result
+     * othervise false
+     */
+    boolean checkAttempt(final MultiplicationResultAttempt multiplicationResultAttempt);
 }

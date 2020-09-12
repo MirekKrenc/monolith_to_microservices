@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -29,7 +29,7 @@ class RandomGeneratorServiceTest {
                 .collect(Collectors.toList());
 
         //then all the value sis going to be between range
-        assertEquals(true, randomGeneratedNumbersAreInRange(randomFactors, RandomGeneratorService.MIN_RANGE, RandomGeneratorService.MAX_RANGE));
+        assertThat(randomGeneratedNumbersAreInRange(randomFactors, RandomGeneratorServiceImpl.MIN_RANGE, RandomGeneratorServiceImpl.MAX_RANGE)).isTrue();
 
     }
 
