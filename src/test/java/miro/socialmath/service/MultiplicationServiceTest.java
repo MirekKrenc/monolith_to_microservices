@@ -22,7 +22,7 @@ class MultiplicationServiceTest {
     private MultiplicationService multiplicationService;
 
     @Test
-    void createRanodmMultiplicationTest() {
+    void createRandomMultiplicationTest() {
 
         /**
          * BDD - define hat should happen when the generateRandomFactor method is called

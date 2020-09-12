@@ -6,7 +6,7 @@ public interface MultiplicationService {
     /**
      *
      * @return Multiplication object with random factors
-     * between 1 and 99
+     * between 11 and 100
      */
     Multiplication createRandomMultiplication();
 }
