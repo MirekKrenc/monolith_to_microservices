@@ -3,6 +3,8 @@ package miro.socialmath.service;
 import miro.socialmath.domain.Multiplication;
 import miro.socialmath.domain.MultiplicationResultAttempt;
 
+import java.util.List;
+
 public interface MultiplicationService {
     /**
      *
@@ -16,4 +18,11 @@ public interface MultiplicationService {
      * othervise false
      */
     boolean checkAttempt(final MultiplicationResultAttempt multiplicationResultAttempt);
+
+    /**
+     *
+     * @param userAlias
+     * @return last attempts
+     */
+    public List<MultiplicationResultAttempt> getStatsForUser(String userAlias);
 }
